@@ -1,0 +1,586 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
+ */
+package com.mycompany.sdge.vistas.entrar;
+
+
+import com.mycompany.sdge.vistas.subGRADOS.cuarto;
+import com.mycompany.sdge.vistas.subGRADOS.primero;
+import com.mycompany.sdge.vistas.subGRADOS.quinto;
+import com.mycompany.sdge.vistas.subGRADOS.segundo;
+import com.mycompany.sdge.vistas.subGRADOS.tercero;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.GradientPaint;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
+import javax.swing.BorderFactory;
+import java.awt.geom.RoundRectangle2D;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.UIManager;
+import javax.swing.border.Border;
+
+/**
+ *
+ * @author PC
+ */
+public class Menu extends javax.swing.JFrame {
+
+    public Menu() {
+        initComponents();
+//        UIManager.put( "Button.arc", 999 );
+
+    }
+
+    class FormaPrincipal extends JPanel {  //Para poner un degradado al panel
+
+        protected void paintComponent(Graphics g) {
+            Graphics2D g2d = (Graphics2D) g;
+
+            int width = getWidth();
+            int height = getHeight();
+
+            // Definir proporciones: 20% para el primer color, 80% para el segundo color y un degradado suave más ancho
+            int firstColorWidth = (int) (width * 0.22);  // 20% del ancho para el primer color
+            int secondColorWidth = (int) (width * 0.80);  // 80% del ancho para el segundo color
+            int gradientWidth = (int) (width * 0.05);  // Degradado del 20% del ancho para hacer la transición más suave
+
+            // Crear los colores personalizados con valores RGB
+            Color firstColor = new Color(175, 105, 232);  // Color de la izquierda
+            Color secondColor = new Color(125, 165, 232);  // Color de la derecha
+
+            // Parte sólida del primer color (20% del ancho)
+            GradientPaint firstGradient = new GradientPaint(
+                    0, 0, firstColor, // Comienza con el primer color (RGB)
+                    firstColorWidth, 0, firstColor, // Primer color sólido hasta el 20%
+                    true
+            );
+            g2d.setPaint(firstGradient);
+            g2d.fillRect(0, 0, firstColorWidth, height);
+
+            // Degradado entre el primer y segundo color (20% del ancho)
+            GradientPaint gradient = new GradientPaint(
+                    firstColorWidth, 0, firstColor, // Comienza con el primer color
+                    firstColorWidth + gradientWidth, 0, secondColor, // Termina con el segundo color en la zona del degradado
+                    false
+            );
+            g2d.setPaint(gradient);
+            g2d.fillRect(firstColorWidth, 0, gradientWidth, height);
+
+            // Parte sólida del segundo color (el resto del ancho después del degradado)
+            GradientPaint secondGradient = new GradientPaint(
+                    firstColorWidth + gradientWidth, 0, secondColor, // Comienza con el segundo color
+                    width, 0, secondColor, // Segundo color hasta el borde derecho
+                    true
+            );
+            g2d.setPaint(secondGradient);
+            g2d.fillRect(firstColorWidth + gradientWidth, 0, width - firstColorWidth - gradientWidth, height);
+        }
+    }
+
+
+    class BordeRedondeado2 extends JButton {
+
+        @Override
+        protected void paintComponent(Graphics grphcs) {
+            Graphics2D g2 = (Graphics2D) grphcs.create(); // Usar create para evitar afectar el original
+            g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+
+            // Establecer el color de fondo y dibujar el fondo redondeado
+            g2.setColor(getBackground());
+            g2.fillRoundRect(0, 0, getWidth(), getHeight(), 20, 20);  // Rellenar el fondo redondeado
+
+            // Pintar el borde
+            g2.setColor(getForeground());  // Color del borde (normalmente el color del texto)
+            g2.drawRoundRect(0, 0, getWidth() - 1, getHeight() - 1, 20, 20); // Dibujar el borde
+
+            super.paintComponent(grphcs);  // Pintar el texto del botón
+            g2.dispose();  // Liberar recursos
+        }
+
+        @Override
+        protected void paintBorder(Graphics g) {
+            Graphics2D g2 = (Graphics2D) g.create();
+            g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+            g2.setColor(getForeground()); // Color del borde
+            g2.drawRoundRect(0, 0, getWidth() - 1, getHeight() - 1, 20, 20); // Borde redondeado
+            g2.dispose();
+        }
+    }
+
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        jPanel1 = new javax.swing.JPanel();
+        dpsPrueba = new javax.swing.JPanel();
+        jPanel3 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        btnMenu = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        dpsEscritorio = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
+        btnAlumno = new Menu.BordeRedondeado2();
+        btnProfesor = new Menu.BordeRedondeado2();
+        btnRecursos = new Menu.BordeRedondeado2();
+        btnAsignatura = new Menu.BordeRedondeado2();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        vistaPrimero = new javax.swing.JMenuItem();
+        vistaSegundo = new javax.swing.JMenuItem();
+        vistaTercero = new javax.swing.JMenuItem();
+        vistaCuarto = new javax.swing.JMenuItem();
+        vistaQuinto = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        vistaMensaje = new javax.swing.JMenuItem();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jPanel1.setBackground(new java.awt.Color(125, 165, 232));
+
+        jPanel3.setBackground(new java.awt.Color(125, 165, 232));
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 525, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 360, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout dpsPruebaLayout = new javax.swing.GroupLayout(dpsPrueba);
+        dpsPrueba.setLayout(dpsPruebaLayout);
+        dpsPruebaLayout.setHorizontalGroup(
+            dpsPruebaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        dpsPruebaLayout.setVerticalGroup(
+            dpsPruebaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dpsPruebaLayout.createSequentialGroup()
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        jPanel2.setBackground(new java.awt.Color(175, 165, 232));
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        btnMenu.setBorderPainted(false);
+        btnMenu.setContentAreaFilled(false);
+        btnMenu.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnMenu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMenuActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("REGISTRO PARA UN COLEGIO");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(btnMenu)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 801, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(btnMenu)
+            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+
+        dpsEscritorio.setBackground(new java.awt.Color(125, 165, 232));
+
+        jPanel4.setBackground(new java.awt.Color(125, 165, 232));
+        jPanel4.setOpaque(false);
+
+        btnAlumno.setBackground(new java.awt.Color(153, 153, 255));
+        btnAlumno.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 18)); // NOI18N
+        btnAlumno.setForeground(new java.awt.Color(255, 255, 255));
+        btnAlumno.setText("Alumno");
+        btnAlumno.setBorderPainted(false);
+        btnAlumno.setContentAreaFilled(false);
+        btnAlumno.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                btnAlumnoMouseMoved(evt);
+            }
+        });
+        btnAlumno.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnAlumnoMouseExited(evt);
+            }
+        });
+        btnAlumno.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAlumnoActionPerformed(evt);
+            }
+        });
+
+        btnProfesor.setBackground(new java.awt.Color(153, 153, 255));
+        btnProfesor.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 18)); // NOI18N
+        btnProfesor.setForeground(new java.awt.Color(255, 255, 255));
+        btnProfesor.setText("Profesor");
+        btnProfesor.setBorderPainted(false);
+        btnProfesor.setContentAreaFilled(false);
+        btnProfesor.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                btnProfesorMouseMoved(evt);
+            }
+        });
+        btnProfesor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnProfesorMouseExited(evt);
+            }
+        });
+
+        btnRecursos.setBackground(new java.awt.Color(153, 153, 255));
+        btnRecursos.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 18)); // NOI18N
+        btnRecursos.setForeground(new java.awt.Color(255, 255, 255));
+        btnRecursos.setText("Rercursos");
+        btnRecursos.setBorderPainted(false);
+        btnRecursos.setContentAreaFilled(false);
+        btnRecursos.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                btnRecursosMouseMoved(evt);
+            }
+        });
+        btnRecursos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnRecursosMouseExited(evt);
+            }
+        });
+
+        btnAsignatura.setBackground(new java.awt.Color(153, 153, 255));
+        btnAsignatura.setFont(new java.awt.Font("Yu Gothic UI Light", 1, 18)); // NOI18N
+        btnAsignatura.setForeground(new java.awt.Color(255, 255, 255));
+        btnAsignatura.setText("Asignaturas");
+        btnAsignatura.setBorderPainted(false);
+        btnAsignatura.setContentAreaFilled(false);
+        btnAsignatura.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                btnAsignaturaMouseMoved(evt);
+            }
+        });
+        btnAsignatura.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                btnAsignaturaMouseExited(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnRecursos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnAsignatura, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
+                    .addComponent(btnProfesor, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnAlumno, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnAlumno, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnProfesor, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnAsignatura, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnRecursos, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(63, 63, 63))
+        );
+
+        javax.swing.GroupLayout dpsEscritorioLayout = new javax.swing.GroupLayout(dpsEscritorio);
+        dpsEscritorio.setLayout(dpsEscritorioLayout);
+        dpsEscritorioLayout.setHorizontalGroup(
+            dpsEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dpsEscritorioLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        dpsEscritorioLayout.setVerticalGroup(
+            dpsEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(dpsEscritorioLayout.createSequentialGroup()
+                .addGap(100, 100, 100)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 310, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(dpsEscritorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(260, 260, 260)
+                        .addComponent(dpsPrueba, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(dpsPrueba, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(dpsEscritorio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(186, Short.MAX_VALUE))
+        );
+
+        jMenu1.setText("GRADOS");
+
+        vistaPrimero.setText("PRIMERO");
+        vistaPrimero.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                vistaPrimeroActionPerformed(evt);
+            }
+        });
+        jMenu1.add(vistaPrimero);
+
+        vistaSegundo.setText("SEGUNDO");
+        vistaSegundo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                vistaSegundoActionPerformed(evt);
+            }
+        });
+        jMenu1.add(vistaSegundo);
+
+        vistaTercero.setText("TERCERO");
+        vistaTercero.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                vistaTerceroActionPerformed(evt);
+            }
+        });
+        jMenu1.add(vistaTercero);
+
+        vistaCuarto.setText("CUARTO");
+        vistaCuarto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                vistaCuartoActionPerformed(evt);
+            }
+        });
+        jMenu1.add(vistaCuarto);
+
+        vistaQuinto.setText("QUINTO");
+        vistaQuinto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                vistaQuintoActionPerformed(evt);
+            }
+        });
+        jMenu1.add(vistaQuinto);
+
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("CONFIGURACION");
+
+        vistaMensaje.setText("MENSAJE");
+        vistaMensaje.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                vistaMensajeActionPerformed(evt);
+            }
+        });
+        jMenu2.add(vistaMensaje);
+
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 906, Short.MAX_VALUE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
+       /* int posicion = dpsEscritorio.getX();
+//        int a=dpsPrueba.getWidth();
+//        int b=dpsPrueba.getHeight();
+        if (posicion > -1) {
+            Animacion.Animacion.mover_izquierda(0, -220, 2, 2, dpsEscritorio);
+//            dpsEscritorio.setSize(910+200, 510);
+            dpsPrueba.setLocation(dpsPrueba.getX() - 100, dpsPrueba.getY());
+
+        } else {
+            Animacion.Animacion.mover_derecha(-220, 0, 2, 2, dpsEscritorio);
+//            dpsEscritorio.setSize(910-200, 510);
+            dpsPrueba.setLocation(dpsPrueba.getX() + 100, dpsPrueba.getY());
+//            Animacion.Animacion.mover_izquierda(0,-70,2,2,dpsPrueba);
+        }*/
+    }//GEN-LAST:event_btnMenuActionPerformed
+
+    private void btnAlumnoMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAlumnoMouseMoved
+        btnAlumno.setBorder(BorderFactory.createMatteBorder(0, 10, 0, 0, Color.WHITE));
+    }//GEN-LAST:event_btnAlumnoMouseMoved
+
+    private void btnAlumnoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAlumnoMouseExited
+        btnAlumno.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+    }//GEN-LAST:event_btnAlumnoMouseExited
+
+    private void btnProfesorMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProfesorMouseMoved
+        btnProfesor.setBorder(BorderFactory.createMatteBorder(0, 10, 0, 0, Color.WHITE));
+    }//GEN-LAST:event_btnProfesorMouseMoved
+
+    private void btnProfesorMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnProfesorMouseExited
+        btnProfesor.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+    }//GEN-LAST:event_btnProfesorMouseExited
+
+    private void btnRecursosMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRecursosMouseMoved
+        btnRecursos.setBorder(BorderFactory.createMatteBorder(0, 10, 0, 0, Color.WHITE));
+    }//GEN-LAST:event_btnRecursosMouseMoved
+
+    private void btnRecursosMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRecursosMouseExited
+        btnRecursos.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+    }//GEN-LAST:event_btnRecursosMouseExited
+
+    private void btnAsignaturaMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAsignaturaMouseMoved
+        btnAsignatura.setBorder(BorderFactory.createMatteBorder(0, 10, 0, 0, Color.WHITE));
+    }//GEN-LAST:event_btnAsignaturaMouseMoved
+
+    private void btnAsignaturaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAsignaturaMouseExited
+        btnAsignatura.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 0));
+    }//GEN-LAST:event_btnAsignaturaMouseExited
+
+    private void btnAlumnoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlumnoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAlumnoActionPerformed
+
+    private void vistaPrimeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vistaPrimeroActionPerformed
+        // TODO add your handling code here:
+        primero primero = new primero();
+        
+        primero.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+          
+        primero.setVisible(true);
+    }//GEN-LAST:event_vistaPrimeroActionPerformed
+
+    private void vistaSegundoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vistaSegundoActionPerformed
+        segundo segundo = new segundo();
+        
+        segundo.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+          
+        segundo.setVisible(true);
+    }//GEN-LAST:event_vistaSegundoActionPerformed
+
+    private void vistaTerceroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vistaTerceroActionPerformed
+        tercero tercero = new tercero();
+        
+        tercero.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+          
+        tercero.setVisible(true);
+    }//GEN-LAST:event_vistaTerceroActionPerformed
+
+    private void vistaCuartoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vistaCuartoActionPerformed
+        cuarto cuarto = new cuarto();
+        
+        cuarto.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+          
+        cuarto.setVisible(true);
+    }//GEN-LAST:event_vistaCuartoActionPerformed
+
+    private void vistaQuintoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vistaQuintoActionPerformed
+        quinto quinto = new quinto();
+        
+        quinto.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+          
+        quinto.setVisible(true);
+    }//GEN-LAST:event_vistaQuintoActionPerformed
+
+    private void vistaMensajeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_vistaMensajeActionPerformed
+        // TODO add your handling code here:
+       
+      
+
+    }//GEN-LAST:event_vistaMensajeActionPerformed
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(Menu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Menu().setVisible(true);
+            }
+        });
+    }
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton btnAlumno;
+    public javax.swing.JButton btnAsignatura;
+    public javax.swing.JButton btnMenu;
+    public javax.swing.JButton btnProfesor;
+    public javax.swing.JButton btnRecursos;
+    public javax.swing.JPanel dpsEscritorio;
+    public javax.swing.JPanel dpsPrueba;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
+    public javax.swing.JPanel jPanel1;
+    public javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JMenuItem vistaCuarto;
+    private javax.swing.JMenuItem vistaMensaje;
+    private javax.swing.JMenuItem vistaPrimero;
+    private javax.swing.JMenuItem vistaQuinto;
+    private javax.swing.JMenuItem vistaSegundo;
+    private javax.swing.JMenuItem vistaTercero;
+    // End of variables declaration//GEN-END:variables
+}
